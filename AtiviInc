@@ -1,0 +1,130 @@
+
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+public class FormasGeometrica {
+    /*
+    1 - triangulo
+    2 - retangulo
+    3 - circulo
+    */
+    
+    int tipo;
+    double area, base, altura; //base e altura passou a ser atributos
+    
+    
+    static ArrayList<FormasGeometrica> triangulos = new ArrayList<FormasGeometrica>();
+    
+    public static void armazenar(FormasGeometrica fg){
+        triangulos.add(fg);
+        //fazer um if pra ver em qual arraylist sera colocado
+    }
+    
+    public static void calculaAreaTriangulo(double base, double altura, FormasGeometrica fg){
+        fg.area = base * altura/2;
+        armazenar(fg);
+        
+    }
+    
+     public static void calculaAreaQuadrado(double lado, FormasGeometrica fg){
+        area = lado  * lado;
+       
+    }
+     
+     public static void calculaAreaCirculo(double raio){
+        area = 3.14 * (raio * raio);
+       
+    }
+    
+    public static void verificaTipo(int tipo){
+        FormasGeomtetrica fg = FormasGeometrica();
+        
+        switch (tipo){
+         
+            case 1:
+                
+                 fg.base = Double.parseDouble(
+                      JOptionPane.showInputDialog("Valor da Base") 
+                         );
+                 fg.altura = Double.parseDouble(
+                      JOptionPane.showInputDialog("Valor da altura") 
+                       );
+                calculaAreaTriangulo(fg.base, fg.altura, fg);
+                
+            break;
+            
+             case 2:
+                
+                double lado = Double.parseDouble(
+                        JOptionPane.showInputDialog("Valor do Lado")
+                         );
+               calculaAreaQuadrado(lado, fg);
+               
+            break;
+            
+             case 3:
+               
+                 double raio = Double.parseDouble(
+                        JOptionPane.showInputDialog("Valor do Raio")
+                         );
+                 calculaAreaCirculo(raio);
+                 
+             break;
+          
+            
+            case 4:
+                
+                imprimir();
+                break;
+                
+            default:
+          JOptionPane.showMessageDialog(null, "Opção inválida!!");
+       break;
+        }
+        
+    }
+    
+    public void imprimeArea(){
+        JOptionPane.showMessageDialog(null, "O valor da área é: " + area);
+        
+    }
+    
+    
+    public static void informaTipo(){ //passou a ser essencial
+        
+        int op;
+        
+        do{
+            
+        op = Integer.parseInt(
+                   JOptionPane.showInputDialog("0 - Sair\n"
+                           + "1 - TRi"
+                           + "2- Ret\n"
+                           + "3- circu\n"
+                           + "4- imprimir")
+                           
+                   
+                   
+                   
+                   ); 
+                    
+        verificaTipo(op);
+        } while()
+    }
+    
+    public static void imprimir(){
+        System.out.println(triangulos); //q posicao ele ta
+        
+    }
+        
+   
+    public static void main(String[] args) {
+      
+       
+       informaTipo();
+
+       
+    }
+    
+}
