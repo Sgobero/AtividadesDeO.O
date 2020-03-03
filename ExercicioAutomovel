@@ -1,0 +1,120 @@
+
+import javax.swing.JOptionPane;
+
+public class Automovel {
+
+	String marca;
+	String modelo;
+	String cor;
+	String ano;
+	String combustivel;
+	int status;
+	int manutencao;
+	
+
+	
+	public Automovel(){
+		
+		this.marca = JOptionPane.showInputDialog("Digite a marca do carro: ");		
+		this.modelo = JOptionPane.showInputDialog("Digite o modelo do carro: ");	
+		this.cor = JOptionPane.showInputDialog("Digite a cor do carro: ");	
+		this.ano = JOptionPane.showInputDialog("Digite o ano do carro: ");
+						
+														
+		this.manutencao = JOptionPane.showConfirmDialog(null, 	"O carro está em manutenção?",
+				"(SIM OU NÃO)", 
+				JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE);
+
+		this.status = JOptionPane.showConfirmDialog(null, "O carro está ligado",
+				"Status: ", 
+				JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE);
+		
+									
+	}
+	
+	
+	public void mudaStatus(){
+		
+		if(status == 1)
+			status = 0;
+		else if(status == 0)
+			status = 1;
+	}
+	
+	public boolean verificaStatus(){
+
+		
+		boolean verifica = true;
+		
+		if(status == 0){
+			verifica = true;
+			
+		}
+		else if(status == 1){
+			verifica = false;
+		}
+		
+		return verifica;
+		
+	}
+	
+	public void abastecer(){
+
+		if(status == 1){
+		
+		this.combustivel = JOptionPane.showInputDialog("Digite o tipo de combustível do carro: \n" 
+				+ "										ÁLCOOL - 1 \n"
+				+ "										GASOLINA - 2 \n"
+				+ "										DIESEL - 3");	
+					
+		JOptionPane.showMessageDialog(null, "O carro foi abastecido!");
+		
+		}
+		
+		 else if (status == 0)
+			JOptionPane.showMessageDialog(null, "O carro não foi abastecido!");
+		
+	}
+	
+	
+	
+	public void rodar(){
+		
+
+		this.manutencao = JOptionPane.showConfirmDialog(null, 	"Você quer rodar com o carro"
+				+ "?",
+				"(SIM OU NÃO)", 
+				JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE);
+		
+		
+		if(status == 0 && manutencao == 1)
+			JOptionPane.showMessageDialog(null, "O carro está pronto para rodar!");
+		else if (status == 1 || manutencao == 0)
+				
+			if(status == 1){
+				JOptionPane.showMessageDialog(null, "O carro não pode rodar pois está desligado!");	
+			}
+			if(manutencao == 0){
+				JOptionPane.showMessageDialog(null, "O carro não pode rodar pois está em manutenção!");
+			}
+		
+	}
+	
+	
+	
+	
+	public static void main (String [] args){
+		
+	
+	Automovel c = new Automovel();
+	
+	c.verificaStatus();
+	c.abastecer();
+	c.rodar();
+	
+	}
+	
+}
